@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Busse</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <!-- Apple web app -->
+    <!--
+    Commented out because web apps in iOS have random freezing bugs etc..
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    -->
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+    <!-- Android web app -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="120x120" href="images/apple-touch-icon.png">
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
+    <link rel="stylesheet" href="bundle.css">
+
+    <script src="scripts/libs/Modernizr.js"></script>
+  </head>
+
+  <body class="no-select">
+    <section class="map" id="map"></section>
+
+    <footer class="lower-bar">
+        <a tabindex="1" class="icon-button filter" id="filter" title="Suosikit">
+            <!-- Icon by Ricardo Augusto Cherem -->
+            <!-- http://thenounproject.com/term/filter/78231/ -->
+            <img src="images/filter.svg" alt="Filter" />
+        </a>
+
+        <a tabindex="2" class="icon-button my-location" id="my-location" title="Paikallista">
+            <!-- Icon by useiconic.com -->
+            <!-- http://thenounproject.com/term/location/45580/ -->
+            <img src="images/locate-me.svg" alt="Location" />
+        </a>
+        <a tabindex="3" class="icon-button zoom-in" id="zoom-in" title="Suurenna">
+            <img src="images/plus.svg" alt="Plus" />
+        </a>
+        <a tabindex="4" class="icon-button zoom-out" id="zoom-out" title="Pienennä">
+            <img src="images/minus.svg" alt="Minus" />
+        </a>
+    </footer>
+
+    <img class="loader hidden rotating" id="loader" src="images/loader.svg" alt="Loading.." />
+
+    <menu class="modal bus-menu hidden">
+        <div class="bus-menu-footer">
+            <a class="icon-button save" id="save" title="Tallenna">
+                <!-- Icon by Jardson Almeida -->
+                <!-- http://thenounproject.com/term/close/8560/ -->
+                <img src="images/check-mark.svg" alt="Save" />
+            </a>
+
+            <div class="settings-container">
+                <label for="show-only-favorites">Näytä vain suosikit</label>
+
+                <input class="toggle" id="show-only-favorites" type="checkbox">
+                <label for="show-only-favorites">
+                    <!-- Container for pretty toggle switch -->
+                </label>
+            </div>
+        </div>
+
+        <div class="bus-button-container">
+            <h1>Suosikkilinjasi</h1>
+        </div>
+    </menu>
+
+    <!-- Mapbox -->
+    <script src="scripts/libs/mapbox.js"></script>
+    <script src="scripts/libs/leaflet-plugins.js"></script>
+
+    <script src="bundle.js"></script>
+ </body>
+</html>

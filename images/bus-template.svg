@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<svg width="{{ diameter }}px" height="{{ diameter }}px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <g transform="rotate({{ rotation }} 50 50)">
+      <circle stroke="#222" fill="{{ color }}" cx="50" cy="50" r="35"/>
+      {{#isMoving}}
+      <polyline fill="{{ color }}" stroke="#222" points="30,21.3 50,2 70,21.3"/>
+      {{/isMoving}}
+  </g>
+
+  <text fill="white" font-size="{{ fontSize }}"
+        x="50" y="50" style="font-family: Helvetica, sans-serif; text-anchor: middle; dominant-baseline: central;">
+    {{ line }}
+  </text>
+</svg>
