@@ -17667,10 +17667,14 @@ module.exports={
     "build": "npm run build-js && npm run build-less",
     "build-js": "browserify app/scripts/main.js -o app/bundle.js",
     "build-less": "lessc app/styles/main.less app/bundle.css && npm run autoprefixer",
+    "build-less-info": "lessc app/info/styles/main.less app/info/main.css && npm run autoprefixer-info",
     "watch": "npm run watch-js & npm run watch-less",
+    "watch-info": "npm run serve & npm run watch-less-info",
     "watch-js": "watchify app/scripts/main.js -d -o app/bundle.js -v",
     "watch-less": "watch \"npm run build-less\" app/styles",
-    "autoprefixer": "autoprefixer app/bundle.css"
+    "autoprefixer": "autoprefixer app/bundle.css",
+    "autoprefixer-info": "autoprefixer app/info/main.css",
+    "watch-less-info": "watch \"npm run build-less-info\" app/info/styles/"
   },
   "repository": {
     "type": "git",
