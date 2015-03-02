@@ -160,6 +160,7 @@ button > span {
   width: 200px;
   margin: 40px auto 0 auto;
   color: #c8de9b;
+  background-color: #4bb5c1;
   position: relative;
   z-index: 1;
   -webkit-backface-visibility: hidden;
