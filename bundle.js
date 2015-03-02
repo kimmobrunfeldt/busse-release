@@ -1,9 +1,15 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var config = {
-    updateInterval: 2 * 1000,
+    updateInterval: 3 * 1000,
     apiUrl: 'http://lissu-api.herokuapp.com',
     mapBoxKey: 'pk.eyJ1Ijoia2ltbW9icnVuZmVsZHQiLCJhIjoiX21FOWpGbyJ9.PeLVL2Rm1OZHJPYBM0lymA',
     mapBoxMapId: 'kimmobrunfeldt.l6efcofl',
+    hereMapsAppId: 'lon2CLqSu9qYoH6SnBkQ',
+    hereMapsAppCode: 'sAiLnBBj5Q4S7PLHSrY9vw',
+
+    // Supported values: mapbox, here
+    mapProvider: 'here',
+
     initialPosition: {latitude: 61.487881, longitude: 23.7810259},
     initialZoom: 12,
     zoomOnLocated: 16,
@@ -28,6 +34,9 @@ module.exports = config;
 },{}],2:[function(require,module,exports){
 var _ = require('lodash');
 var attachFastClick = require('fastclick');
+var humane = require('humane-js');
+humane.clickToClose = true;
+humane.timeout = 0;
 
 var config = require('./config');
 var utils = require('./utils');
@@ -64,6 +73,27 @@ var fetchGeneral = utils.get('data/general.json').then(function(req) {
     return general;
 });
 
+// Display messages to user
+// When adding new message, remember to set expires to far enough and increase
+// id
+utils.get('data/messages.json').then(function(req) {
+    var readMessageIds = appData.readMessageIds || [];
+    var data = JSON.parse(req.responseText);
+
+    var message = _.last(data.messages);
+    var isMessageRead = _.contains(readMessageIds, message.id);
+    var isMessageExpired = message.expires < utils.unixTime();
+
+    if (!isMessageRead && !isMessageExpired) {
+        console.log('Unread message found', message);
+
+        readMessageIds.push(message.id);
+        appData.readMessageIds = readMessageIds;
+        storage.save('appData', appData);
+
+        humane.log(message.html);
+    }
+});
 
 function main() {
     attachFastClick(document.body);
@@ -234,7 +264,7 @@ function toggleBusMenu() {
 
 main();
 
-},{"../../package.json":12,"./config":1,"./map":3,"./storage":4,"./utils":6,"./vehicle-control":7,"fastclick":10,"lodash":11}],3:[function(require,module,exports){
+},{"../../package.json":13,"./config":1,"./map":3,"./storage":4,"./utils":6,"./vehicle-control":7,"fastclick":10,"humane-js":11,"lodash":12}],3:[function(require,module,exports){
 var Promise = require('bluebird');
 var _ = require('lodash');
 
@@ -243,11 +273,34 @@ var utils = require('./utils');
 
 
 function Map(containerId) {
-    L.mapbox.accessToken = config.mapBoxKey;
-    this._map = L.mapbox.map(containerId, config.mapBoxMapId, {
+    // Options shared across providers
+    var sharedMapOptions = {
         zoomControl: false,
         attributionControl: false
-    });
+    };
+
+    var attribution;
+    if (config.mapProvider === 'mapbox') {
+        L.mapbox.accessToken = config.mapBoxKey;
+
+        this._map = L.mapbox.map(containerId, config.mapBoxMapId, sharedMapOptions);
+
+        attribution = '<a href="https://www.mapbox.com/about/maps/"';
+        attribution += 'target="_blank">&copy; Mapbox &copy; OpenStreetMap</a>';
+    } else if (config.mapProvider === 'here') {
+        var tileLayer = L.tileLayer.provider('HERE.normalDayGrey', {
+            app_id: config.hereMapsAppId,
+            app_code: config.hereMapsAppCode
+        });
+
+        this._map = L.map(containerId, sharedMapOptions);
+        this._map.addLayer(tileLayer);
+    } else {
+        throw new Error('Unknown map provider: ' + config.mapProvider);
+    }
+
+    var credits = L.control.attribution({position: 'topright'}).addTo(this._map);
+    credits.addAttribution(attribution);
 
     this._map.setView([
         config.initialPosition.latitude,
@@ -265,11 +318,6 @@ function Map(containerId) {
     zoomOutButton.addEventListener('click', function zoomOutClicked() {
         self._map.zoomOut();
     });
-
-    var credits = L.control.attribution({position: 'topright'}).addTo(this._map);
-    var attribution = '<a href="https://www.mapbox.com/about/maps/"';
-    attribution += 'target="_blank">&copy; Mapbox &copy; OpenStreetMap</a>';
-    credits.addAttribution(attribution);
 
     // Because map with hundreds of markers is slow, we temporarily hide
     // all the markers when user interacts with the map to increase performance
@@ -480,7 +528,7 @@ Map.prototype._debouncedShowMarkers = _.debounce(function _debouncedShowMarkers(
 
 module.exports = Map;
 
-},{"./config":1,"./utils":6,"bluebird":8,"lodash":11}],4:[function(require,module,exports){
+},{"./config":1,"./utils":6,"bluebird":8,"lodash":12}],4:[function(require,module,exports){
 // Abstraction layer over localstorage so that switching to any other
 // persistance method would be easier
 
@@ -526,7 +574,7 @@ module.exports = {
     get: get
 };
 
-},{"lodash":11}],5:[function(require,module,exports){
+},{"lodash":12}],5:[function(require,module,exports){
 var Timer = function Timer(callback, opts) {
     this._callback = callback;
     this._opts = opts;
@@ -634,6 +682,10 @@ function numeralsFirst(text) {
     }).join('');
 }
 
+function unixTime() {
+    return Math.round(+new Date() / 1000);
+}
+
 module.exports = {
     get: get,
     removeClass: removeClass,
@@ -641,10 +693,11 @@ module.exports = {
     setStyle: setStyle,
     hasClass: hasClass,
     capitalize: capitalize,
-    numeralsFirst: numeralsFirst
+    numeralsFirst: numeralsFirst,
+    unixTime: unixTime
 };
 
-},{"bluebird":8,"lodash":11}],7:[function(require,module,exports){
+},{"bluebird":8,"lodash":12}],7:[function(require,module,exports){
 var _ = require('lodash');
 var utils = require('./utils');
 var Timer = require('./timer');
@@ -766,7 +819,7 @@ module.exports = {
     setFilter: setFilter
 };
 
-},{"./config":1,"./timer":5,"./utils":6,"lodash":11}],8:[function(require,module,exports){
+},{"./config":1,"./timer":5,"./utils":6,"lodash":12}],8:[function(require,module,exports){
 (function (process,global){
 /* @preserve
  * The MIT License (MIT)
@@ -6394,6 +6447,246 @@ process.chdir = function (dir) {
 }());
 
 },{}],11:[function(require,module,exports){
+/**
+ * humane.js
+ * Humanized Messages for Notifications
+ * @author Marc Harter (@wavded)
+ * @example
+ *   humane.log('hello world');
+ * @license MIT
+ * See more usage examples at: http://wavded.github.com/humane-js/
+ */
+
+;!function (name, context, definition) {
+   if (typeof module !== 'undefined') module.exports = definition(name, context)
+   else if (typeof define === 'function' && typeof define.amd  === 'object') define(definition)
+   else context[name] = definition(name, context)
+}('humane', this, function (name, context) {
+   var win = window
+   var doc = document
+
+   var ENV = {
+      on: function (el, type, cb) {
+         'addEventListener' in win ? el.addEventListener(type,cb,false) : el.attachEvent('on'+type,cb)
+      },
+      off: function (el, type, cb) {
+         'removeEventListener' in win ? el.removeEventListener(type,cb,false) : el.detachEvent('on'+type,cb)
+      },
+      bind: function (fn, ctx) {
+         return function () { fn.apply(ctx,arguments) }
+      },
+      isArray: Array.isArray || function (obj) { return Object.prototype.toString.call(obj) === '[object Array]' },
+      config: function (preferred, fallback) {
+         return preferred != null ? preferred : fallback
+      },
+      transSupport: false,
+      useFilter: /msie [678]/i.test(navigator.userAgent), // sniff, sniff
+      _checkTransition: function () {
+         var el = doc.createElement('div')
+         var vendors = { webkit: 'webkit', Moz: '', O: 'o', ms: 'MS' }
+
+         for (var vendor in vendors)
+            if (vendor + 'Transition' in el.style) {
+               this.vendorPrefix = vendors[vendor]
+               this.transSupport = true
+            }
+      }
+   }
+   ENV._checkTransition()
+
+   var Humane = function (o) {
+      o || (o = {})
+      this.queue = []
+      this.baseCls = o.baseCls || 'humane'
+      this.addnCls = o.addnCls || ''
+      this.timeout = 'timeout' in o ? o.timeout : 2500
+      this.waitForMove = o.waitForMove || false
+      this.clickToClose = o.clickToClose || false
+      this.timeoutAfterMove = o.timeoutAfterMove || false
+      this.container = o.container
+
+      try { this._setupEl() } // attempt to setup elements
+      catch (e) {
+        ENV.on(win,'load',ENV.bind(this._setupEl, this)) // dom wasn't ready, wait till ready
+      }
+   }
+
+   Humane.prototype = {
+      constructor: Humane,
+      _setupEl: function () {
+         var el = doc.createElement('div')
+         el.style.display = 'none'
+         if (!this.container){
+           if(doc.body) this.container = doc.body;
+           else throw 'document.body is null'
+         }
+         this.container.appendChild(el)
+         this.el = el
+         this.removeEvent = ENV.bind(function(){
+            var timeoutAfterMove = ENV.config(this.currentMsg.timeoutAfterMove,this.timeoutAfterMove)
+            if (!timeoutAfterMove){
+               this.remove()
+            } else {
+               setTimeout(ENV.bind(this.remove,this),timeoutAfterMove)
+            }
+         },this)
+
+         this.transEvent = ENV.bind(this._afterAnimation,this)
+         this._run()
+      },
+      _afterTimeout: function () {
+         if (!ENV.config(this.currentMsg.waitForMove,this.waitForMove)) this.remove()
+
+         else if (!this.removeEventsSet) {
+            ENV.on(doc.body,'mousemove',this.removeEvent)
+            ENV.on(doc.body,'click',this.removeEvent)
+            ENV.on(doc.body,'keypress',this.removeEvent)
+            ENV.on(doc.body,'touchstart',this.removeEvent)
+            this.removeEventsSet = true
+         }
+      },
+      _run: function () {
+         if (this._animating || !this.queue.length || !this.el) return
+
+         this._animating = true
+         if (this.currentTimer) {
+            clearTimeout(this.currentTimer)
+            this.currentTimer = null
+         }
+
+         var msg = this.queue.shift()
+         var clickToClose = ENV.config(msg.clickToClose,this.clickToClose)
+
+         if (clickToClose) {
+            ENV.on(this.el,'click',this.removeEvent)
+            ENV.on(this.el,'touchstart',this.removeEvent)
+         }
+
+         var timeout = ENV.config(msg.timeout,this.timeout)
+
+         if (timeout > 0)
+            this.currentTimer = setTimeout(ENV.bind(this._afterTimeout,this), timeout)
+
+         if (ENV.isArray(msg.html)) msg.html = '<ul><li>'+msg.html.join('<li>')+'</ul>'
+
+         this.el.innerHTML = msg.html
+         this.currentMsg = msg
+         this.el.className = this.baseCls
+         if (ENV.transSupport) {
+            this.el.style.display = 'block'
+            setTimeout(ENV.bind(this._showMsg,this),50)
+         } else {
+            this._showMsg()
+         }
+
+      },
+      _setOpacity: function (opacity) {
+         if (ENV.useFilter){
+            try{
+               this.el.filters.item('DXImageTransform.Microsoft.Alpha').Opacity = opacity*100
+            } catch(err){}
+         } else {
+            this.el.style.opacity = String(opacity)
+         }
+      },
+      _showMsg: function () {
+         var addnCls = ENV.config(this.currentMsg.addnCls,this.addnCls)
+         if (ENV.transSupport) {
+            this.el.className = this.baseCls+' '+addnCls+' '+this.baseCls+'-animate'
+         }
+         else {
+            var opacity = 0
+            this.el.className = this.baseCls+' '+addnCls+' '+this.baseCls+'-js-animate'
+            this._setOpacity(0) // reset value so hover states work
+            this.el.style.display = 'block'
+
+            var self = this
+            var interval = setInterval(function(){
+               if (opacity < 1) {
+                  opacity += 0.1
+                  if (opacity > 1) opacity = 1
+                  self._setOpacity(opacity)
+               }
+               else clearInterval(interval)
+            }, 30)
+         }
+      },
+      _hideMsg: function () {
+         var addnCls = ENV.config(this.currentMsg.addnCls,this.addnCls)
+         if (ENV.transSupport) {
+            this.el.className = this.baseCls+' '+addnCls
+            ENV.on(this.el,ENV.vendorPrefix ? ENV.vendorPrefix+'TransitionEnd' : 'transitionend',this.transEvent)
+         }
+         else {
+            var opacity = 1
+            var self = this
+            var interval = setInterval(function(){
+               if(opacity > 0) {
+                  opacity -= 0.1
+                  if (opacity < 0) opacity = 0
+                  self._setOpacity(opacity);
+               }
+               else {
+                  self.el.className = self.baseCls+' '+addnCls
+                  clearInterval(interval)
+                  self._afterAnimation()
+               }
+            }, 30)
+         }
+      },
+      _afterAnimation: function () {
+         if (ENV.transSupport) ENV.off(this.el,ENV.vendorPrefix ? ENV.vendorPrefix+'TransitionEnd' : 'transitionend',this.transEvent)
+
+         if (this.currentMsg.cb) this.currentMsg.cb()
+         this.el.style.display = 'none'
+
+         this._animating = false
+         this._run()
+      },
+      remove: function (e) {
+         var cb = typeof e == 'function' ? e : null
+
+         ENV.off(doc.body,'mousemove',this.removeEvent)
+         ENV.off(doc.body,'click',this.removeEvent)
+         ENV.off(doc.body,'keypress',this.removeEvent)
+         ENV.off(doc.body,'touchstart',this.removeEvent)
+         ENV.off(this.el,'click',this.removeEvent)
+         ENV.off(this.el,'touchstart',this.removeEvent)
+         this.removeEventsSet = false
+
+         if (cb && this.currentMsg) this.currentMsg.cb = cb
+         if (this._animating) this._hideMsg()
+         else if (cb) cb()
+      },
+      log: function (html, o, cb, defaults) {
+         var msg = {}
+         if (defaults)
+           for (var opt in defaults)
+               msg[opt] = defaults[opt]
+
+         if (typeof o == 'function') cb = o
+         else if (o)
+            for (var opt in o) msg[opt] = o[opt]
+
+         msg.html = html
+         if (cb) msg.cb = cb
+         this.queue.push(msg)
+         this._run()
+         return this
+      },
+      spawn: function (defaults) {
+         var self = this
+         return function (html, o, cb) {
+            self.log.call(self,html,o,cb,defaults)
+            return self
+         }
+      },
+      create: function (o) { return new Humane(o) }
+   }
+   return new Humane()
+});
+
+},{}],12:[function(require,module,exports){
 (function (global){
 /**
  * @license
@@ -17639,7 +17932,7 @@ process.chdir = function (dir) {
 }.call(this));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 module.exports={
   "name": "busse-web",
   "version": "0.0.0",
@@ -17650,6 +17943,7 @@ module.exports={
   "dependencies": {
     "bluebird": "^2.9.9",
     "fastclick": "^1.0.6",
+    "humane-js": "^3.2.2",
     "lodash": "^3.2.0"
   },
   "devDependencies": {
