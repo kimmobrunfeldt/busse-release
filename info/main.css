@@ -147,6 +147,9 @@ small,
 .no-touch .link:hover:after {
   width: 98%;
 }
+.touch .link:active:after {
+  width: 98%;
+}
 .button,
 .button:after,
 button > span {
@@ -203,16 +206,30 @@ button > span {
   -webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
           transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
 }
-.button:hover {
+.no-touch .button:hover {
   border-color: white;
   background-color: rgba(255, 255, 255, 0.2);
 }
-.button:hover::after {
+.no-touch .button:hover::after {
   opacity: 1;
   -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
 }
-.button:hover > span {
+.no-touch .button:hover > span {
+  opacity: 0;
+  -webkit-transform: translate3d(0, -25%, 0);
+          transform: translate3d(0, -25%, 0);
+}
+.touch .button:active {
+  border-color: white;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.touch .button:active::after {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+.touch .button:active > span {
   opacity: 0;
   -webkit-transform: translate3d(0, -25%, 0);
           transform: translate3d(0, -25%, 0);
