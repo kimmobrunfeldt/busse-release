@@ -8,7 +8,7 @@ var config = {
     hereMapsAppCode: 'sAiLnBBj5Q4S7PLHSrY9vw',
 
     // Supported values: mapbox, here
-    mapProvider: 'mapbox',
+    mapProvider: 'here',
 
     initialPosition: {latitude: 61.487881, longitude: 23.7810259},
     initialZoom: 12,

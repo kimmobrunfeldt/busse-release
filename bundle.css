@@ -220,6 +220,8 @@ html {
           transform: scale(1.1);
 }
 .humane a {
+  white-space: nowrap;
+  line-height: 140%;
   color: #ffa131;
   text-decoration: none;
 }
