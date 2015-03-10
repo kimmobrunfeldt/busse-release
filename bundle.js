@@ -371,7 +371,7 @@ Map.prototype.showMarker = function showMarker(id) {
 };
 
 Map.prototype.moveMarker = function moveMarker(id, position) {
-    if (this._isUserInteracting()) {
+    if (this.isUserInteracting()) {
         return;
     }
 
@@ -382,7 +382,7 @@ Map.prototype.moveMarker = function moveMarker(id, position) {
 };
 
 Map.prototype.rotateMarker = function rotateMarker(id, rotation) {
-    if (this._isUserInteracting()) {
+    if (this.isUserInteracting()) {
         return;
     }
 
@@ -396,7 +396,7 @@ Map.prototype.rotateMarker = function rotateMarker(id, rotation) {
 };
 
 Map.prototype.setMarkerIcon = function setMarkerIcon(id, iconSrc) {
-    if (this._isUserInteracting()) {
+    if (this.isUserInteracting()) {
         return;
     }
 
@@ -443,6 +443,10 @@ Map.prototype.centerToUserLocation = function centerToUserLocation() {
         console.log(err.message);
         console.log(err);
     });
+};
+
+Map.prototype.isUserInteracting = function isUserInteracting() {
+    return this._interactions > 0;
 };
 
 Map.prototype._setOrUpdateUserLocation = function _setOrUpdateUserLocation(pos) {
@@ -495,10 +499,6 @@ Map.prototype._createMarkerIcon = function _createMarkerIcon(opts) {
             '</div>'
         ].join('\n')
     });
-};
-
-Map.prototype._isUserInteracting = function _isUserInteracting() {
-    return this._interactions > 0;
 };
 
 Map.prototype._interactionStart = function _interactionStart() {
@@ -699,6 +699,8 @@ module.exports = {
 
 },{"bluebird":8,"lodash":12}],7:[function(require,module,exports){
 var _ = require('lodash');
+var Promise = require('bluebird');
+var humane = require('humane-js');
 var utils = require('./utils');
 var Timer = require('./timer');
 var config = require('./config');
@@ -708,10 +710,15 @@ var filterFunc = function() {
     return true;
 };
 var lastVehicles = [];
+var errorShown = false;
 
 
 function start(map) {
     var timer = new Timer(function() {
+        if (map.isUserInteracting()) {
+            return Promise.resolve(true);
+        }
+
         return getAndUpdateVehicles(map);
     }, {
         interval: config.updateInterval
@@ -719,10 +726,20 @@ function start(map) {
     timer.start();
 }
 
-
 function getAndUpdateVehicles(map) {
     return utils.get(config.apiUrl).then(function(req) {
-        var vehicles = JSON.parse(req.responseText).vehicles;
+        var response = JSON.parse(req.responseText);
+
+        if (response.error) {
+            if (!errorShown) {
+                humane.log('Virhe ladatessa bussien sijainteja.');
+                errorShown = true;
+            }
+
+            return;
+        }
+
+        var vehicles = response.vehicles;
         lastVehicles = vehicles;
         updateVehicles(map, vehicles);
     });
@@ -748,7 +765,7 @@ function updateVehicles(map, vehicles) {
 
 function addVehicle(map, vehicle) {
     var isMoving = vehicle.rotation !== 0;
-    var iconSrc = isMoving ? 'images/bus-moving.svg' : 'images/bus.svg';
+    var iconSrc = isMoving ? 'images/bus-moving.png' : 'images/bus.png';
     var fontSize = vehicle.line.length > 2
         ? config.smallBusFontSize
         : config.normalBusFontSize;
@@ -790,7 +807,7 @@ function updateVehicle(map, vehicle) {
     map.moveMarker(vehicle.id, newPos);
 
     var isMoving = vehicle.rotation !== 0;
-    var iconSrc = isMoving ? 'images/bus-moving.svg' : 'images/bus.svg';
+    var iconSrc = isMoving ? 'images/bus-moving.png' : 'images/bus.png';
     map.setMarkerIcon(vehicle.id, iconSrc);
 
     map.rotateMarker(vehicle.id, vehicle.rotation);
@@ -819,7 +836,7 @@ module.exports = {
     setFilter: setFilter
 };
 
-},{"./config":1,"./timer":5,"./utils":6,"lodash":12}],8:[function(require,module,exports){
+},{"./config":1,"./timer":5,"./utils":6,"bluebird":8,"humane-js":11,"lodash":12}],8:[function(require,module,exports){
 (function (process,global){
 /* @preserve
  * The MIT License (MIT)
