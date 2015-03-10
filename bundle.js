@@ -732,7 +732,9 @@ function getAndUpdateVehicles(map) {
 
         if (response.error) {
             if (!errorShown) {
-                humane.log('Virhe ladatessa bussien sijainteja.');
+                var msg = 'Virhe ladatessa bussien sijainteja.';
+                msg += ' Katso myös <a href="https://twitter.com/bussefi">twitter.com/bussefi<a>';
+                humane.log(msg);
                 errorShown = true;
             }
 
