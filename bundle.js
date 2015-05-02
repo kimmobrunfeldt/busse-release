@@ -730,7 +730,7 @@ function getAndUpdateVehicles(map) {
     return utils.get(config.apiUrl).then(function(req) {
         var response = JSON.parse(req.responseText);
 
-        if (response.error) {
+        if (response.error || _.isEmpty(response.vehicles)) {
             if (!errorShown) {
                 var msg = 'Virhe ladatessa bussien sijainteja';
                 if (response.msg) {
