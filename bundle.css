@@ -199,7 +199,7 @@ html {
   height: 44px;
   width: 44px;
   border-radius: 50%;
-  background: #444444;
+  background: #444;
   -webkit-transition: all 0.1s ease-in-out;
           transition: all 0.1s ease-in-out;
 }
@@ -221,11 +221,11 @@ html {
 .humane a {
   white-space: nowrap;
   line-height: 140%;
-  color: #ffa131;
+  color: #FFA131;
   text-decoration: none;
 }
 .humane a:visited {
-  color: #ffa131;
+  color: #FFA131;
 }
 .humane a:hover {
   text-decoration: underline;
@@ -240,13 +240,13 @@ html {
   background: white;
 }
 .bus-menu h1 {
-  color: #ffa131;
+  color: #FFA131;
   margin: 10px 0;
   font-weight: bold;
   font-size: 30px;
 }
 .bus-menu .bus-menu-footer {
-  color: #777777;
+  color: #777;
   background: #f9f9f9;
   position: fixed;
   z-index: 3000;
@@ -293,7 +293,7 @@ html {
   line-height: 0px;
 }
 .bus-menu .bus-button-container .favorited-route {
-  background: #ffa131;
+  background: #FFA131;
 }
 .bus-menu .bus-button-container a {
   margin: 0;
@@ -303,7 +303,7 @@ html {
   margin: 0 2px 2px 0;
   width: 40px;
   height: 40px;
-  background: #777777;
+  background: #777;
   -webkit-transition: -webkit-transform 0.1s ease-in-out;
           transition: transform 0.1s ease-in-out;
 }
@@ -450,7 +450,7 @@ input.toggle + label {
           user-select: none;
   width: 68px;
   height: 34px;
-  background-color: #aaaaaa;
+  background-color: #aaa;
   border-radius: 34px;
 }
 input.toggle + label:before,
@@ -472,13 +472,13 @@ input.toggle + label:after {
   left: 4px;
   bottom: 4px;
   width: 26px;
-  background-color: #aaaaaa;
+  background-color: #aaa;
   border-radius: 26px;
 }
 input.toggle:checked + label {
-  background-color: #ffa131;
+  background-color: #FFA131;
 }
 input.toggle:checked + label:after {
   margin-left: 34px;
-  background-color: #ffa131;
+  background-color: #FFA131;
 }
