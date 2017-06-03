@@ -1,63 +1,424 @@
 {
   "routes": [
-    {"id": "1", "operator": "TKL"},
-    {"id": "2", "operator": "TKL"},
-    {"id": "3", "operator": "TKL"},
-    {"id": "4Y", "operator": "TKL"},
-    {"id": "4", "operator": "TKL"},
-    {"id": "5", "operator": "TKL"},
-    {"id": "8", "operator": "TKL"},
-    {"id": "9", "operator": "TKL"},
-    {"id": "10", "operator": "TKL"},
-    {"id": "11", "operator": "TKL"},
-    {"id": "12", "operator": "TKL"},
-    {"id": "13", "operator": "TKL"},
-    {"id": "14", "operator": "TKL"},
-    {"id": "15", "operator": "TKL"},
-    {"id": "17", "operator": "TKL"},
-    {"id": "20", "operator": "TKL"},
-    {"id": "21Y", "operator": "TKL"},
-    {"id": "21", "operator": "TKL"},
-    {"id": "24", "operator": "TKL"},
-    {"id": "25", "operator": "TKL"},
-    {"id": "26", "operator": "TKL"},
-    {"id": "27", "operator": "TKL"},
-    {"id": "28Y", "operator": "TKL"},
-    {"id": "28", "operator": "TKL"},
-    {"id": "29", "operator": "TKL"},
-    {"id": "31", "operator": "TKL"},
-    {"id": "32", "operator": "Other"},
-    {"id": "33Y", "operator": "Other"},
-    {"id": "33", "operator": "Other"},
-    {"id": "35", "operator": "Other"},
-    {"id": "36", "operator": "Other"},
-    {"id": "38", "operator": "Other"},
-    {"id": "40", "operator": "Other"},
-    {"id": "41", "operator": "Other"},
-    {"id": "42", "operator": "Other"},
-    {"id": "44", "operator": "Other"},
-    {"id": "45", "operator": "Other"},
-    {"id": "46", "operator": "Other"},
-    {"id": "47", "operator": "Other"},
-    {"id": "50", "operator": "Other"},
-    {"id": "52", "operator": "Other"},
-    {"id": "53", "operator": "Other"},
-    {"id": "54", "operator": "Other"},
-    {"id": "55", "operator": "Other"},
-    {"id": "63", "operator": "Other"},
-    {"id": "65", "operator": "Other"},
-    {"id": "70", "operator": "Other"},
-    {"id": "71", "operator": "Other"},
-    {"id": "72", "operator": "Other"},
-    {"id": "73", "operator": "Other"},
-    {"id": "74", "operator": "Other"},
-    {"id": "77", "operator": "Other"},
-    {"id": "79", "operator": "Other"},
-    {"id": "80", "operator": "Other"},
-    {"id": "85", "operator": "Other"},
-    {"id": "90", "operator": "Other"},
-    {"id": "91", "operator": "Other"},
-    {"id": "92A", "operator": "Other"},
-    {"id": "92B", "operator": "Other"}
+    {
+      "id": "1",
+      "operator": "TKL"
+    },
+    {
+      "id": "1C",
+      "operator": "TKL"
+    },
+    {
+      "id": "1B",
+      "operator": "TKL"
+    },
+    {
+      "id": "1A",
+      "operator": "TKL"
+    },
+    {
+      "id": "2",
+      "operator": "TKL"
+    },
+    {
+      "id": "3R",
+      "operator": "TKL"
+    },
+    {
+      "id": "3",
+      "operator": "TKL"
+    },
+    {
+      "id": "3V",
+      "operator": "TKL"
+    },
+    {
+      "id": "4",
+      "operator": "TKL"
+    },
+    {
+      "id": "4Y",
+      "operator": "TKL"
+    },
+    {
+      "id": "5",
+      "operator": "TKL"
+    },
+    {
+      "id": "6",
+      "operator": "TKL"
+    },
+    {
+      "id": "8",
+      "operator": "TKL"
+    },
+    {
+      "id": "9K",
+      "operator": "TKL"
+    },
+    {
+      "id": "9",
+      "operator": "TKL"
+    },
+    {
+      "id": "10",
+      "operator": "TKL"
+    },
+    {
+      "id": "11P",
+      "operator": "TKL"
+    },
+    {
+      "id": "11N",
+      "operator": "TKL"
+    },
+    {
+      "id": "11",
+      "operator": "TKL"
+    },
+    {
+      "id": "12",
+      "operator": "TKL"
+    },
+    {
+      "id": "14NPo",
+      "operator": "TKL"
+    },
+    {
+      "id": "14Po",
+      "operator": "TKL"
+    },
+    {
+      "id": "15",
+      "operator": "TKL"
+    },
+    {
+      "id": "17",
+      "operator": "TKL"
+    },
+    {
+      "id": "20",
+      "operator": "TKL"
+    },
+    {
+      "id": "20R",
+      "operator": "TKL"
+    },
+    {
+      "id": "21Y",
+      "operator": "TKL"
+    },
+    {
+      "id": "21",
+      "operator": "TKL"
+    },
+    {
+      "id": "24L",
+      "operator": "TKL"
+    },
+    {
+      "id": "25",
+      "operator": "TKL"
+    },
+    {
+      "id": "26",
+      "operator": "TKL"
+    },
+    {
+      "id": "28Y",
+      "operator": "TKL"
+    },
+    {
+      "id": "28B",
+      "operator": "TKL"
+    },
+    {
+      "id": "28C",
+      "operator": "TKL"
+    },
+    {
+      "id": "28A",
+      "operator": "TKL"
+    },
+    {
+      "id": "29",
+      "operator": "TKL"
+    },
+    {
+      "id": "29K",
+      "operator": "TKL"
+    },
+    {
+      "id": "31",
+      "operator": "TKL"
+    },
+    {
+      "id": "32",
+      "operator": "TKL"
+    },
+    {
+      "id": "33Y",
+      "operator": "TKL"
+    },
+    {
+      "id": "33",
+      "operator": "TKL"
+    },
+    {
+      "id": "34",
+      "operator": "TKL"
+    },
+    {
+      "id": "35",
+      "operator": "TKL"
+    },
+    {
+      "id": "37",
+      "operator": "TKL"
+    },
+    {
+      "id": "38R",
+      "operator": "TKL"
+    },
+    {
+      "id": "38",
+      "operator": "TKL"
+    },
+    {
+      "id": "40A",
+      "operator": "TKL"
+    },
+    {
+      "id": "40",
+      "operator": "TKL"
+    },
+    {
+      "id": "40B",
+      "operator": "TKL"
+    },
+    {
+      "id": "40C",
+      "operator": "TKL"
+    },
+    {
+      "id": "41",
+      "operator": "TKL"
+    },
+    {
+      "id": "42O",
+      "operator": "TKL"
+    },
+    {
+      "id": "42K",
+      "operator": "TKL"
+    },
+    {
+      "id": "42",
+      "operator": "TKL"
+    },
+    {
+      "id": "44H",
+      "operator": "TKL"
+    },
+    {
+      "id": "44A",
+      "operator": "TKL"
+    },
+    {
+      "id": "44",
+      "operator": "TKL"
+    },
+    {
+      "id": "45S",
+      "operator": "TKL"
+    },
+    {
+      "id": "45",
+      "operator": "TKL"
+    },
+    {
+      "id": "46",
+      "operator": "TKL"
+    },
+    {
+      "id": "46J",
+      "operator": "TKL"
+    },
+    {
+      "id": "50V",
+      "operator": "TKL"
+    },
+    {
+      "id": "50",
+      "operator": "TKL"
+    },
+    {
+      "id": "55",
+      "operator": "TKL"
+    },
+    {
+      "id": "63",
+      "operator": "TKL"
+    },
+    {
+      "id": "65x",
+      "operator": "TKL"
+    },
+    {
+      "id": "65",
+      "operator": "TKL"
+    },
+    {
+      "id": "70",
+      "operator": "TKL"
+    },
+    {
+      "id": "70Y",
+      "operator": "TKL"
+    },
+    {
+      "id": "71SK",
+      "operator": "TKL"
+    },
+    {
+      "id": "71S",
+      "operator": "TKL"
+    },
+    {
+      "id": "71",
+      "operator": "TKL"
+    },
+    {
+      "id": "71K",
+      "operator": "TKL"
+    },
+    {
+      "id": "72",
+      "operator": "TKL"
+    },
+    {
+      "id": "73",
+      "operator": "TKL"
+    },
+    {
+      "id": "74",
+      "operator": "TKL"
+    },
+    {
+      "id": "77x",
+      "operator": "TKL"
+    },
+    {
+      "id": "77",
+      "operator": "TKL"
+    },
+    {
+      "id": "78",
+      "operator": "TKL"
+    },
+    {
+      "id": "78x",
+      "operator": "TKL"
+    },
+    {
+      "id": "79Li",
+      "operator": "TKL"
+    },
+    {
+      "id": "79Si",
+      "operator": "TKL"
+    },
+    {
+      "id": "79",
+      "operator": "TKL"
+    },
+    {
+      "id": "80Y",
+      "operator": "TKL"
+    },
+    {
+      "id": "80",
+      "operator": "TKL"
+    },
+    {
+      "id": "81",
+      "operator": "TKL"
+    },
+    {
+      "id": "83",
+      "operator": "TKL"
+    },
+    {
+      "id": "84V",
+      "operator": "TKL"
+    },
+    {
+      "id": "84",
+      "operator": "TKL"
+    },
+    {
+      "id": "85P",
+      "operator": "TKL"
+    },
+    {
+      "id": "85V",
+      "operator": "TKL"
+    },
+    {
+      "id": "85",
+      "operator": "TKL"
+    },
+    {
+      "id": "86",
+      "operator": "TKL"
+    },
+    {
+      "id": "86x",
+      "operator": "TKL"
+    },
+    {
+      "id": "90",
+      "operator": "TKL"
+    },
+    {
+      "id": "90M",
+      "operator": "TKL"
+    },
+    {
+      "id": "90Tx",
+      "operator": "TKL"
+    },
+    {
+      "id": "90T",
+      "operator": "TKL"
+    },
+    {
+      "id": "90Mx",
+      "operator": "TKL"
+    },
+    {
+      "id": "91",
+      "operator": "TKL"
+    },
+    {
+      "id": "91D",
+      "operator": "TKL"
+    },
+    {
+      "id": "92A",
+      "operator": "TKL"
+    },
+    {
+      "id": "92B",
+      "operator": "TKL"
+    },
+    {
+      "id": "92BK",
+      "operator": "TKL"
+    },
+    {
+      "id": "137",
+      "operator": "TKL"
+    }
   ]
 }
