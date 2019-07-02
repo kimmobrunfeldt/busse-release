@@ -25,19 +25,19 @@
       "operator": "TKL"
     },
     {
-      "id": "3",
+      "id": "3B",
       "operator": "TKL"
     },
     {
-      "id": "3V",
-      "operator": "TKL"
-    },
-    {
-      "id": "4",
+      "id": "3A",
       "operator": "TKL"
     },
     {
       "id": "4Y",
+      "operator": "TKL"
+    },
+    {
+      "id": "4",
       "operator": "TKL"
     },
     {
@@ -53,11 +53,11 @@
       "operator": "TKL"
     },
     {
-      "id": "9K",
+      "id": "9B",
       "operator": "TKL"
     },
     {
-      "id": "9",
+      "id": "9A",
       "operator": "TKL"
     },
     {
@@ -65,15 +65,15 @@
       "operator": "TKL"
     },
     {
-      "id": "11P",
-      "operator": "TKL"
-    },
-    {
-      "id": "11N",
-      "operator": "TKL"
-    },
-    {
       "id": "11",
+      "operator": "TKL"
+    },
+    {
+      "id": "11B",
+      "operator": "TKL"
+    },
+    {
+      "id": "11C",
       "operator": "TKL"
     },
     {
@@ -81,11 +81,7 @@
       "operator": "TKL"
     },
     {
-      "id": "14NPo",
-      "operator": "TKL"
-    },
-    {
-      "id": "14Po",
+      "id": "14",
       "operator": "TKL"
     },
     {
@@ -97,23 +93,15 @@
       "operator": "TKL"
     },
     {
-      "id": "20",
-      "operator": "TKL"
-    },
-    {
       "id": "20R",
       "operator": "TKL"
     },
     {
-      "id": "21Y",
+      "id": "20",
       "operator": "TKL"
     },
     {
       "id": "21",
-      "operator": "TKL"
-    },
-    {
-      "id": "24L",
       "operator": "TKL"
     },
     {
@@ -125,15 +113,11 @@
       "operator": "TKL"
     },
     {
+      "id": "27",
+      "operator": "TKL"
+    },
+    {
       "id": "28Y",
-      "operator": "TKL"
-    },
-    {
-      "id": "28B",
-      "operator": "TKL"
-    },
-    {
-      "id": "28C",
       "operator": "TKL"
     },
     {
@@ -141,11 +125,15 @@
       "operator": "TKL"
     },
     {
-      "id": "29",
+      "id": "28B",
       "operator": "TKL"
     },
     {
-      "id": "29K",
+      "id": "29B",
+      "operator": "TKL"
+    },
+    {
+      "id": "29A",
       "operator": "TKL"
     },
     {
@@ -165,14 +153,6 @@
       "operator": "TKL"
     },
     {
-      "id": "34",
-      "operator": "TKL"
-    },
-    {
-      "id": "35",
-      "operator": "TKL"
-    },
-    {
       "id": "37",
       "operator": "TKL"
     },
@@ -185,7 +165,7 @@
       "operator": "TKL"
     },
     {
-      "id": "40A",
+      "id": "40B",
       "operator": "TKL"
     },
     {
@@ -193,11 +173,7 @@
       "operator": "TKL"
     },
     {
-      "id": "40B",
-      "operator": "TKL"
-    },
-    {
-      "id": "40C",
+      "id": "40A",
       "operator": "TKL"
     },
     {
@@ -205,11 +181,7 @@
       "operator": "TKL"
     },
     {
-      "id": "42O",
-      "operator": "TKL"
-    },
-    {
-      "id": "42K",
+      "id": "42P",
       "operator": "TKL"
     },
     {
@@ -217,35 +189,11 @@
       "operator": "TKL"
     },
     {
-      "id": "44H",
-      "operator": "TKL"
-    },
-    {
-      "id": "44A",
-      "operator": "TKL"
-    },
-    {
-      "id": "44",
-      "operator": "TKL"
-    },
-    {
-      "id": "45S",
-      "operator": "TKL"
-    },
-    {
       "id": "45",
       "operator": "TKL"
     },
     {
-      "id": "46",
-      "operator": "TKL"
-    },
-    {
-      "id": "46J",
-      "operator": "TKL"
-    },
-    {
-      "id": "50V",
+      "id": "49",
       "operator": "TKL"
     },
     {
@@ -253,15 +201,39 @@
       "operator": "TKL"
     },
     {
+      "id": "50A",
+      "operator": "TKL"
+    },
+    {
+      "id": "50B",
+      "operator": "TKL"
+    },
+    {
+      "id": "50C",
+      "operator": "TKL"
+    },
+    {
+      "id": "51",
+      "operator": "TKL"
+    },
+    {
+      "id": "51I",
+      "operator": "TKL"
+    },
+    {
+      "id": "53K",
+      "operator": "TKL"
+    },
+    {
       "id": "55",
       "operator": "TKL"
     },
     {
-      "id": "63",
+      "id": "58",
       "operator": "TKL"
     },
     {
-      "id": "65x",
+      "id": "58S",
       "operator": "TKL"
     },
     {
@@ -269,15 +241,11 @@
       "operator": "TKL"
     },
     {
-      "id": "70",
-      "operator": "TKL"
-    },
-    {
       "id": "70Y",
       "operator": "TKL"
     },
     {
-      "id": "71SK",
+      "id": "70",
       "operator": "TKL"
     },
     {
@@ -285,11 +253,15 @@
       "operator": "TKL"
     },
     {
-      "id": "71",
+      "id": "71K",
       "operator": "TKL"
     },
     {
-      "id": "71K",
+      "id": "71SK",
+      "operator": "TKL"
+    },
+    {
+      "id": "71",
       "operator": "TKL"
     },
     {
@@ -301,7 +273,7 @@
       "operator": "TKL"
     },
     {
-      "id": "74",
+      "id": "77",
       "operator": "TKL"
     },
     {
@@ -309,7 +281,7 @@
       "operator": "TKL"
     },
     {
-      "id": "77",
+      "id": "78x",
       "operator": "TKL"
     },
     {
@@ -317,27 +289,19 @@
       "operator": "TKL"
     },
     {
-      "id": "78x",
+      "id": "79A",
       "operator": "TKL"
     },
     {
-      "id": "79Li",
-      "operator": "TKL"
-    },
-    {
-      "id": "79Si",
-      "operator": "TKL"
-    },
-    {
-      "id": "79",
-      "operator": "TKL"
-    },
-    {
-      "id": "80Y",
+      "id": "79B",
       "operator": "TKL"
     },
     {
       "id": "80",
+      "operator": "TKL"
+    },
+    {
+      "id": "80Y",
       "operator": "TKL"
     },
     {
@@ -349,19 +313,7 @@
       "operator": "TKL"
     },
     {
-      "id": "84V",
-      "operator": "TKL"
-    },
-    {
       "id": "84",
-      "operator": "TKL"
-    },
-    {
-      "id": "85P",
-      "operator": "TKL"
-    },
-    {
-      "id": "85V",
       "operator": "TKL"
     },
     {
@@ -369,11 +321,7 @@
       "operator": "TKL"
     },
     {
-      "id": "86",
-      "operator": "TKL"
-    },
-    {
-      "id": "86x",
+      "id": "85V",
       "operator": "TKL"
     },
     {
@@ -385,7 +333,7 @@
       "operator": "TKL"
     },
     {
-      "id": "90Tx",
+      "id": "90Mx",
       "operator": "TKL"
     },
     {
@@ -393,15 +341,7 @@
       "operator": "TKL"
     },
     {
-      "id": "90Mx",
-      "operator": "TKL"
-    },
-    {
       "id": "91",
-      "operator": "TKL"
-    },
-    {
-      "id": "91D",
       "operator": "TKL"
     },
     {
@@ -409,15 +349,27 @@
       "operator": "TKL"
     },
     {
-      "id": "92B",
-      "operator": "TKL"
-    },
-    {
       "id": "92BK",
       "operator": "TKL"
     },
     {
-      "id": "137",
+      "id": "95",
+      "operator": "TKL"
+    },
+    {
+      "id": "95R",
+      "operator": "TKL"
+    },
+    {
+      "id": "95X",
+      "operator": "TKL"
+    },
+    {
+      "id": "100",
+      "operator": "TKL"
+    },
+    {
+      "id": "115",
       "operator": "TKL"
     }
   ]
