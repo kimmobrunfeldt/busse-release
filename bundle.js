@@ -68,7 +68,7 @@ var KEY_CODE = {
 };
 
 // Instead of semver, incrementing version from 0 - n is used
-var dataVersion = require('../../package.json').dataVersion;
+var dataVersion = "1"
 
 // Clear old data if new format applies
 var appData = storage.get('appData');
@@ -283,7 +283,7 @@ function toggleBusMenu() {
 
 main();
 
-},{"../../package.json":13,"./config":1,"./map":3,"./storage":4,"./utils":6,"./vehicle-control":7,"fastclick":9,"humane-js":10,"lodash":11}],3:[function(require,module,exports){
+},{"./config":1,"./map":3,"./storage":4,"./utils":6,"./vehicle-control":7,"fastclick":9,"humane-js":10,"lodash":11}],3:[function(require,module,exports){
 var Promise = require('bluebird');
 var _ = require('lodash');
 
@@ -19294,57 +19294,5 @@ process.cwd = function () { return '/' };
 process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
-
-},{}],13:[function(require,module,exports){
-module.exports={
-  "name": "busse-web",
-  "version": "0.0.0",
-  "dataVersion": "1",
-  "private": true,
-  "description": "",
-  "main": "",
-  "dependencies": {
-    "bluebird": "^2.9.9",
-    "fastclick": "^1.0.6",
-    "humane-js": "^3.2.2",
-    "lodash": "^3.2.0"
-  },
-  "devDependencies": {
-    "autoprefixer": "^5.1.0",
-    "browserify": "^6.3.2",
-    "chokidar-cli": "^0.2.1",
-    "concurrently": "0.0.5",
-    "csv": "^0.4.1",
-    "less": "^2.5.1",
-    "mustache": "^1.0.0",
-    "node-static": "^0.7.6",
-    "watchify": "^2.1.1"
-  },
-  "scripts": {
-    "start": "./tools/tmux",
-    "serve": "static -a 0.0.0.0 -c 0 app",
-    "build": "npm run build-js && npm run build-less",
-    "build-js": "browserify app/scripts/main.js -o app/bundle.js",
-    "build-less": "lessc app/styles/main.less app/bundle.css && npm run autoprefixer",
-    "build-less-info": "lessc app/info/styles/main.less app/info/main.css && npm run autoprefixer-info",
-    "watch": "npm run watch-js & npm run watch-less",
-    "watch-info": "npm run serve & npm run watch-less-info",
-    "watch-js": "watchify app/scripts/main.js -d -o app/bundle.js -v",
-    "watch-less": "chokidar 'app/styles/**/**.less' -c 'npm run build-less'",
-    "autoprefixer": "autoprefixer app/bundle.css",
-    "autoprefixer-info": "autoprefixer app/info/main.css",
-    "watch-less-info": "chokidar 'app/info/styles/**/**.less' -c 'npm run build-less-info'"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/kimmobrunfeldt/busse-web.git"
-  },
-  "author": "Kimmo Brunfeldt <kimmobrunfeldt@gmail.com> (http://kimmobrunfeldt.github.io/)",
-  "license": "",
-  "bugs": {
-    "url": "https://github.com/kimmobrunfeldt/busse-web/issues"
-  },
-  "homepage": "https://github.com/kimmobrunfeldt/busse-web"
-}
 
 },{}]},{},[2]);
