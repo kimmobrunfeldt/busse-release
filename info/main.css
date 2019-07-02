@@ -191,15 +191,13 @@ button > span {
   left: 0;
   opacity: 0;
   color: white;
-  -webkit-transform: translate3d(0, 25%, 0);
-          transform: translate3d(0, 25%, 0);
+  transform: translate3d(0, 25%, 0);
   text-align: center;
 }
 .button::after,
 .button > span {
   width: 100%;
   padding: 9px 0;
-  transition: -webkit-transform 0.3s, opacity 0.3s;
   transition: transform 0.3s, opacity 0.3s;
   transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
 }
@@ -209,13 +207,11 @@ button > span {
 }
 .no-touch .button:hover::after {
   opacity: 1;
-  -webkit-transform: translate3d(0, 0, 0);
-          transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 .no-touch .button:hover > span {
   opacity: 0;
-  -webkit-transform: translate3d(0, -25%, 0);
-          transform: translate3d(0, -25%, 0);
+  transform: translate3d(0, -25%, 0);
 }
 .touch .button:active {
   border-color: white;
@@ -223,13 +219,11 @@ button > span {
 }
 .touch .button:active::after {
   opacity: 1;
-  -webkit-transform: translate3d(0, 0, 0);
-          transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 .touch .button:active > span {
   opacity: 0;
-  -webkit-transform: translate3d(0, -25%, 0);
-          transform: translate3d(0, -25%, 0);
+  transform: translate3d(0, -25%, 0);
 }
 footer {
   display: block;
@@ -263,38 +257,23 @@ footer {
   bottom: 0;
   left: -200px;
   height: 20%;
-  -webkit-animation: driving 0.2s infinite alternate;
-          animation: driving 0.2s infinite alternate;
+  animation: driving 0.2s infinite alternate;
 }
 /* Animations */
-@-webkit-keyframes driving {
+@keyframes driving {
   from {
-    -webkit-transform: translateY(0);
-            transform: translateY(0);
+    transform: translateY(0);
   }
   to {
-    -webkit-transform: translateY(-1px);
-            transform: translateY(-1px);
+    transform: translateY(-1px);
   }
 }
 @keyframes driving {
   from {
-    -webkit-transform: translateY(0);
-            transform: translateY(0);
+    transform: translateY(0);
   }
   to {
-    -webkit-transform: translateY(-1px);
-            transform: translateY(-1px);
-  }
-}
-@keyframes driving {
-  from {
-    -webkit-transform: translateY(0);
-            transform: translateY(0);
-  }
-  to {
-    -webkit-transform: translateY(-1px);
-            transform: translateY(-1px);
+    transform: translateY(-1px);
   }
 }
 body,

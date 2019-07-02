@@ -12,7 +12,7 @@ var locationConfigs = {
 
     // The default, main domain
     tampere: {
-        apiUrl: 'https://lissu-api-backup.herokuapp.com',
+        apiUrl: 'https://lissu-api.herokuapp.com',
         initialPosition: {latitude: 61.487881, longitude: 23.7810259},
         initialZoom: 12
     }
@@ -49,7 +49,7 @@ var config = _.merge({
 
 module.exports = config;
 
-},{"./utils":6,"lodash":12}],2:[function(require,module,exports){
+},{"./utils":6,"lodash":11}],2:[function(require,module,exports){
 var _ = require('lodash');
 var attachFastClick = require('fastclick');
 var humane = require('humane-js');
@@ -283,7 +283,7 @@ function toggleBusMenu() {
 
 main();
 
-},{"../../package.json":13,"./config":1,"./map":3,"./storage":4,"./utils":6,"./vehicle-control":7,"fastclick":10,"humane-js":11,"lodash":12}],3:[function(require,module,exports){
+},{"../../package.json":13,"./config":1,"./map":3,"./storage":4,"./utils":6,"./vehicle-control":7,"fastclick":9,"humane-js":10,"lodash":11}],3:[function(require,module,exports){
 var Promise = require('bluebird');
 var _ = require('lodash');
 
@@ -548,7 +548,7 @@ Map.prototype._debouncedShowMarkers = _.debounce(function _debouncedShowMarkers(
 
 module.exports = Map;
 
-},{"./config":1,"./utils":6,"bluebird":8,"lodash":12}],4:[function(require,module,exports){
+},{"./config":1,"./utils":6,"bluebird":8,"lodash":11}],4:[function(require,module,exports){
 // Abstraction layer over localstorage so that switching to any other
 // persistance method would be easier
 
@@ -594,7 +594,7 @@ module.exports = {
     get: get
 };
 
-},{"lodash":12}],5:[function(require,module,exports){
+},{"lodash":11}],5:[function(require,module,exports){
 var Timer = function Timer(callback, opts) {
     this._callback = callback;
     this._opts = opts;
@@ -723,7 +723,7 @@ module.exports = {
     getQueryParameterByName: getQueryParameterByName
 };
 
-},{"bluebird":8,"lodash":12}],7:[function(require,module,exports){
+},{"bluebird":8,"lodash":11}],7:[function(require,module,exports){
 var _ = require('lodash');
 var Promise = require('bluebird');
 var humane = require('humane-js');
@@ -874,7 +874,7 @@ module.exports = {
     setFilter: setFilter
 };
 
-},{"./config":1,"./timer":5,"./utils":6,"bluebird":8,"humane-js":11,"lodash":12}],8:[function(require,module,exports){
+},{"./config":1,"./timer":5,"./utils":6,"bluebird":8,"humane-js":10,"lodash":11}],8:[function(require,module,exports){
 (function (process,global){
 /* @preserve
  * The MIT License (MIT)
@@ -5769,95 +5769,7 @@ module.exports = ret;
 },{"./es5.js":14}]},{},[4])(4)
 });                    ;if (typeof window !== 'undefined' && window !== null) {                               window.P = window.Promise;                                                     } else if (typeof self !== 'undefined' && self !== null) {                             self.P = self.Promise;                                                         }
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":9}],9:[function(require,module,exports){
-// shim for using process in browser
-
-var process = module.exports = {};
-
-process.nextTick = (function () {
-    var canSetImmediate = typeof window !== 'undefined'
-    && window.setImmediate;
-    var canMutationObserver = typeof window !== 'undefined'
-    && window.MutationObserver;
-    var canPost = typeof window !== 'undefined'
-    && window.postMessage && window.addEventListener
-    ;
-
-    if (canSetImmediate) {
-        return function (f) { return window.setImmediate(f) };
-    }
-
-    var queue = [];
-
-    if (canMutationObserver) {
-        var hiddenDiv = document.createElement("div");
-        var observer = new MutationObserver(function () {
-            var queueList = queue.slice();
-            queue.length = 0;
-            queueList.forEach(function (fn) {
-                fn();
-            });
-        });
-
-        observer.observe(hiddenDiv, { attributes: true });
-
-        return function nextTick(fn) {
-            if (!queue.length) {
-                hiddenDiv.setAttribute('yes', 'no');
-            }
-            queue.push(fn);
-        };
-    }
-
-    if (canPost) {
-        window.addEventListener('message', function (ev) {
-            var source = ev.source;
-            if ((source === window || source === null) && ev.data === 'process-tick') {
-                ev.stopPropagation();
-                if (queue.length > 0) {
-                    var fn = queue.shift();
-                    fn();
-                }
-            }
-        }, true);
-
-        return function nextTick(fn) {
-            queue.push(fn);
-            window.postMessage('process-tick', '*');
-        };
-    }
-
-    return function nextTick(fn) {
-        setTimeout(fn, 0);
-    };
-})();
-
-process.title = 'browser';
-process.browser = true;
-process.env = {};
-process.argv = [];
-
-function noop() {}
-
-process.on = noop;
-process.addListener = noop;
-process.once = noop;
-process.off = noop;
-process.removeListener = noop;
-process.removeAllListeners = noop;
-process.emit = noop;
-
-process.binding = function (name) {
-    throw new Error('process.binding is not supported');
-};
-
-// TODO(shtylman)
-process.cwd = function () { return '/' };
-process.chdir = function (dir) {
-    throw new Error('process.chdir is not supported');
-};
-
-},{}],10:[function(require,module,exports){
+},{"_process":12}],9:[function(require,module,exports){
 ;(function () {
 	'use strict';
 
@@ -6700,7 +6612,7 @@ process.chdir = function (dir) {
 	}
 }());
 
-},{}],11:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 /**
  * humane.js
  * Humanized Messages for Notifications
@@ -6940,7 +6852,7 @@ process.chdir = function (dir) {
    return new Humane()
 });
 
-},{}],12:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 (function (global){
 /**
  * @license
@@ -19295,6 +19207,94 @@ process.chdir = function (dir) {
 }.call(this));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],12:[function(require,module,exports){
+// shim for using process in browser
+
+var process = module.exports = {};
+
+process.nextTick = (function () {
+    var canSetImmediate = typeof window !== 'undefined'
+    && window.setImmediate;
+    var canMutationObserver = typeof window !== 'undefined'
+    && window.MutationObserver;
+    var canPost = typeof window !== 'undefined'
+    && window.postMessage && window.addEventListener
+    ;
+
+    if (canSetImmediate) {
+        return function (f) { return window.setImmediate(f) };
+    }
+
+    var queue = [];
+
+    if (canMutationObserver) {
+        var hiddenDiv = document.createElement("div");
+        var observer = new MutationObserver(function () {
+            var queueList = queue.slice();
+            queue.length = 0;
+            queueList.forEach(function (fn) {
+                fn();
+            });
+        });
+
+        observer.observe(hiddenDiv, { attributes: true });
+
+        return function nextTick(fn) {
+            if (!queue.length) {
+                hiddenDiv.setAttribute('yes', 'no');
+            }
+            queue.push(fn);
+        };
+    }
+
+    if (canPost) {
+        window.addEventListener('message', function (ev) {
+            var source = ev.source;
+            if ((source === window || source === null) && ev.data === 'process-tick') {
+                ev.stopPropagation();
+                if (queue.length > 0) {
+                    var fn = queue.shift();
+                    fn();
+                }
+            }
+        }, true);
+
+        return function nextTick(fn) {
+            queue.push(fn);
+            window.postMessage('process-tick', '*');
+        };
+    }
+
+    return function nextTick(fn) {
+        setTimeout(fn, 0);
+    };
+})();
+
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+// TODO(shtylman)
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+
 },{}],13:[function(require,module,exports){
 module.exports={
   "name": "busse-web",
