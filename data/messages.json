@@ -2,6 +2,7 @@
   "messages": [
     {"id": 1, "expires": 0, "html": "Busse käyttää toistaiseksi HERE karttoja. <a href='https://twitter.com/bussefi'>Lue lisää: twitter.com/bussefi<a>"},
     {"id": 2, "expires": 0, "html": "Taustajärjestelmässä on ilmennyt häiriö. Bussien sijainnit eivät päivity. <a href='https://twitter.com/bussefi'>Lue lisää: twitter.com/bussefi<a>"},
-    {"id": 3, "expires": 1497101561, "html": "Uudet linjat päivitetty ja paikannus korjattu 3. kesäkuuta. Hauskaa kesää! ☀️"}
+    {"id": 3, "expires": 1497101561, "html": "Uudet linjat päivitetty ja paikannus korjattu 3. kesäkuuta. Hauskaa kesää! ☀️"},
+    {"id": 4, "expires": 1564677015, "html": "Uudet linjat päivitetty ja sovellus korjattu. Hyvää kesää! ☀️"}
   ]
 }
