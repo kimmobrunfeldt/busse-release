@@ -336,16 +336,16 @@
              * envirionments.
              */
             url:
-                'http://{s}.{base}.maps.cit.api.here.com/maptile/2.1/' +
+                'https://{s}.{base}.maps.ls.hereapi.com/maptile/2.1/' +
                 'maptile/{mapID}/{variant}/{z}/{x}/{y}/256/png8?' +
-                'app_id={app_id}&app_code={app_code}',
+                'apiKey={api_key}',
             options: {
                 attribution:
                     'Map &copy; 1987-2015 <a href="http://developer.here.com">HERE</a>',
                 subdomains: '1234',
                 mapID: 'newest',
                 'app_id': '<insert your app_id here>',
-                'app_code': '<insert your app_code here>',
+                'api_key': '<insert your api_key here>',
                 base: 'base',
                 variant: 'normal.day',
                 minZoom: 0,

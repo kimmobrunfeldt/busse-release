@@ -26,11 +26,11 @@ var config = _.merge({
     updateInterval: 3 * 1000,
     mapBoxKey: 'pk.eyJ1Ijoia2ltbW9icnVuZmVsZHQiLCJhIjoiX21FOWpGbyJ9.PeLVL2Rm1OZHJPYBM0lymA',
     mapBoxMapId: 'kimmobrunfeldt.l6efcofl',
-    hereMapsAppId: 'lon2CLqSu9qYoH6SnBkQ',
-    hereMapsAppCode: 'sAiLnBBj5Q4S7PLHSrY9vw',
+    hereMapsAppId: 'GyFlYmx7EURwJrD5O7eR',
+    hereMapsApiKey: 'jvtQ9HZvxEZZivLiJPTsQdnJrnBWxiQH5fvpDbYst4U',
 
     // Supported values: mapbox, here
-    mapProvider: 'mapbox',
+    mapProvider: 'here',
 
     initialZoom: 12,
     zoomOnLocated: 16,
@@ -309,7 +309,7 @@ function Map(containerId) {
     } else if (config.mapProvider === 'here') {
         var tileLayer = L.tileLayer.provider('HERE.normalDayGrey', {
             app_id: config.hereMapsAppId,
-            app_code: config.hereMapsAppCode
+            api_key: config.hereMapsApiKey
         });
 
         this._map = L.map(containerId, sharedMapOptions);
